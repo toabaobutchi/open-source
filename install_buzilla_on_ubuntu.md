@@ -106,7 +106,7 @@ Khi sử dụng các lệnh trên, sẽ có một só lệnh được khuyến n
     * Dòng 29: đặt `$webservergroup` thành `www-data`.
     * Dòng 67: đặt `$db_pass` thành mật khẩu đã đặt với tài khoản `bugs` ở bước [Cấu hình MariaDB](#cấu-hình-mariadb).
 
-* Chạy lại lệnh `./ checksetup`.
+* Chạy lại lệnh `./checksetup.pl`.
 
 * Test server
 ```console
