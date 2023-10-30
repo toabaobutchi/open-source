@@ -1,23 +1,77 @@
 # Cài đặt LAMP Stack - Tạo Virtual host
 
+## Truy cập bằng quyền Root
 
-Cài đặt Apache2:`sudo apt install apache2`
+Sử dụng lệnh `sudo su` và nhập mật khẩu. Các lệnh phía sau sẽ không cần bắt đầu bằng lệnh `sudo`.
 
-Kiểm tra trạng thái máy chủ apache2: `sudo systemctl status apache2`
+## Cài đặt máy chủ Apache2
 
-Cài đặt máy chủ MySQL: `sudo apt install mysql-server`
+* Cài đặt:
+```console
+    sudo apt install apache2
+```
 
-Kiểm tra máy chủ MySQL: `sudo mysql`
+* Kiểm tra trạng thái máy chủ Apache2:
 
-Cài đặt PHP `sudo apt install php libapache2-mod-php php-mysql`
+```console
+    sudo systemctl status apache2
+```
+> [!Note]
+> Một cách khác để kiểm tra máy chủ Apache đã khởi chạy hay chưa là mở trình duyệt và truy cập vào `localhost`.
 
-Kiểm tra PHP `php -v`
+* Các lệnh liên quan khác - sử dụng cú pháp sau:
 
-Tạo host ảo
-- Di chuyển vào thư mục **/var/www**: `cd /var/www`
+```console
+    sudo systemctl [command] apache2
 
-- Tạo thư mục có tên trùng với virtual host cần tạo: `mkdir myweb`
-  
+    # [command] thông dụng: start, stop, restart, ...
+```
+
+## Cài đặt máy chủ MySQL
+
+* Cài đặt:
+```console
+    sudo apt install mysql-server
+```
+
+* Kiểm tra:
+```console
+    sudo mysql
+```
+
+## Cài đặt PHP
+
+* Cài đặt:
+```console
+    sudo apt install php libapache2-mod-php php-mysql
+```
+
+* Kiểm tra:
+```console
+    php -v
+```
+
+## Tạo host ảo trong localhost
+
+* Nếu như **WampServer** hay **Xampp** sử dụng thư mục gốc là `C:\wamp64\www` hay `C:\xampp\htdocs` thì thư mục của máy chủ Apache trong Linux sử dụng là `/var/www`. Để đăng ký một host ảo trong localhost, hãy di chuyển vào thư mục này
+ 
+ ```console
+     # từ bất kỳ đường dẫn hiện tại nào
+     cd /var/www
+```
+
+> [!Note]
+> Trong thư mục `/var/www` có thư mục `html` chứa file `index.html`. File `index.html` là file khởi động khi truy cập vào `localhost`.
+
+* Từ thư mục `/var/www`, ta có thể tạo một thư mục mới trùng tên với host ảo cần tạo.
+
+```console
+    mkdir yourvhost
+```
+
+> [!Important]
+> Ở các ví dụ sau, tên host ảo sẽ là **`yourvhost.com`**. Hãy chỉnh sửa lại cho phù hợp với nhu cầu.
+
 - Tạo một file index.php (có thể đặt tên khác): `sudo nano index.php`
   
 - Di chuyển vào thư mục **/etc/apache2/sites-available**: `cd /etc/apache2/sites-available`
