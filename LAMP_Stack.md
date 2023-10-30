@@ -48,3 +48,6 @@ sudo systemctl reload apache2
 ```
 
 Truy cập vào host ảo và kiểm tra.
+
+
+Cài đặt Wordpress: [**Wordpress**](https://ubuntu.com/tutorials/install-and-configure-wordpress)
