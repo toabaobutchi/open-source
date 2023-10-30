@@ -1,30 +1,50 @@
 # Cài đặt LAMP Stack - Tạo Virtual host
 
-Cập nhật `apt`:
+
+Cài đặt Apache2:`sudo apt install apache2`
+
+Kiểm tra trạng thái máy chủ apache2: `sudo systemctl status apache2`
+
+Cài đặt máy chủ MySQL: `sudo apt install mysql-server`
+
+Kiểm tra máy chủ MySQL: `sudo mysql`
+
+Cài đặt PHP `sudo apt install php libapache2-mod-php php-mysql`
+
+Kiểm tra PHP `php -v`
+
+Tạo host ảo
+- Di chuyển vào thư mục **/var/www**: `cd /var/www`
+
+- Tạo thư mục có tên trùng với virtual host cần tạo: `mkdir myweb`
+  
+- Tạo một file index.php (có thể đặt tên khác): `sudo nano index.php`
+  
+- Di chuyển vào thư mục **/etc/apache2/sites-available**: `cd /etc/apache2/sites-available`
+  
+- Tạo file **[virtual-host-name].conf**: `sudo nano [virtual-host-name].conf` (`[virtual-host-name]` tự  đặt lại)
+  
+- Chép đoạn mã bên dưới vào file vừa tạo:
 
 ```console
-    sudo apt update
-    sudo apt upgrade
+    <VirtualHost *:80>
+	    ServerName  [virtual-host-name]
+	    DocumentRoot /var/www/[virtual-host-name]
+    </VirtualHost>
 ```
-
-## Cài đặt LAMP Stack
-
-### Cài đặt máy chủ Apache
+- Đăng ký localhost mới cho virtual host vừa tạo: 
+    `sudo nano /etc/hosts`
+Điền vào dòng chữ: `127.0.0.1 [virtual-host-name]`
+- Kích hoạt host ảo mới: 
+```console
+    sudo a2ensite [virtual-host-name].conf
+    sudo systemctl reload apache2
+```
+- Tắt 000-default.conf:
 
 ```console
-    sudo apt install apache2
+sudo a2dissite 000-default.conf
+sudo systemctl reload apache2
 ```
 
-Thông thường, máy chủ Apache sẽ tự động active sau khi cài đặt, sử dụng lệnh sau để kiểm tra:
-
-```console
-    sudo systemctl status apache2
-```
-
-Một cách khác để kiểm tra máy chủ Apache là mở trình duyệt và truy vập vào `localhost`.
-
-Nếu máy chủ Apache chưa khởi chạy, sử dụng lệnh sau:
-
-```console
-    sudo systemctl start apache2
-```
+Truy cập vào host ảo và kiểm tra.
