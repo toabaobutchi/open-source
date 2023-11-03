@@ -24,7 +24,7 @@ sudo systemctl status apache2
 ```console
 sudo systemctl [command] apache2
 
-# [command] thông dụng: start, stop, restart, ...
+# [command] thông dụng: start, stop, restart, reload, ...
 ```
 
 ## Cài đặt máy chủ MySQL
@@ -65,7 +65,7 @@ php -v
 > [!Note]
 > Trong thư mục `/var/www` có thư mục `html` chứa file `index.html`. File `index.html` là file khởi động khi truy cập vào `localhost`.
 
-* Từ thư mục `/var/www`, ta có thể tạo một thư mục mới trùng tên với host ảo cần tạo.
+* Từ thư mục `/var/www`, ta có thể tạo một thư mục mới trùng tên với host ảo cần tạo. Về cơ bản thì muốn tạo thư mục ở đâu cũng được (Desktop, thư mục tự tạo, ...).
 
 ```console
 mkdir yourvhost
@@ -75,12 +75,15 @@ mkdir yourvhost
 > * Ở các ví dụ sau, tên host ảo sẽ là **`yourvhost.com`**. Hãy chỉnh sửa lại cho phù hợp với nhu cầu.
 >
 > * Có thể tạo thư mục `yourvhost` ở thư mục `html` bên trong hoặc bất cứ vị trí nào bắt đầu từ `/var/www`. Nội dung sau sẽ chỉ định đường dẫn cụ thể.
+> * Ở đa phần các trang web hướng dẫn sẽ trỏ đến `/var/www/html`.
 
 * Tạo một file `index.php` (hoặc bất kỳ, lát nữa sẽ hiển thị trên web):
 
 ```console
 sudo nano index.php
 ```
+
+Có thể dùng các trình soạn thảo khác như `vim`, `kate`, ... Xem thêm tại: [**Top 10 công cụ soạn thảo trên Linux**](https://hotanmy.blogspot.com/2017/08/top-10-cong-cu-soan-thao-hang-dau-tren-linux.html). Ở nội dung này sử dụng `nano`.
 
 Hãy thêm một đoạn mã bất kỳ của PHP vào file vừa tạo, ví dụ:
 
@@ -109,17 +112,20 @@ sudo nano yourvhost.conf
 ```console
 <VirtualHost *:80>
     ServerName  yourvhost.com
-    DocumentRoot /var/www/[path to yourvhost]
+    DocumentRoot [path to yourvhost]
 </VirtualHost>
 ```
 
+Đoạn mã trên chỉ là một ví dụ đơn giản dùng để bắt toàn bộ IP với port 80 (`*:80`). Có thể chỉ định thông tin khác.
+
 ### Bước 3: Đăng ký yourvhost.com như là localhost
 
-* Đăng ký localhost mới cho host ảo vừa tạo:
+* Đăng ký host ảo vừa tạo:
 
 ```console
 sudo nano /etc/hosts
 ```
+
 Ở đây đang muốn cấu hình localhost có tên khác là yourvhost.com, nên hãy viết trong file `/etc/hosts`:
 ```console
 127.0.0.1 yourvhost.com
