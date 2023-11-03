@@ -8,13 +8,13 @@ Sử dụng lệnh `sudo su` và nhập mật khẩu. Các lệnh phía sau sẽ
 
 * Cài đặt:
 ```console
-    sudo apt install apache2
+sudo apt install apache2
 ```
 
 * Kiểm tra trạng thái máy chủ Apache2:
 
 ```console
-    sudo systemctl status apache2
+sudo systemctl status apache2
 ```
 > [!Note]
 > Một cách khác để kiểm tra máy chủ Apache đã khởi chạy hay chưa là mở trình duyệt và truy cập vào `localhost`.
@@ -22,33 +22,33 @@ Sử dụng lệnh `sudo su` và nhập mật khẩu. Các lệnh phía sau sẽ
 * Các lệnh liên quan khác - sử dụng cú pháp sau:
 
 ```console
-    sudo systemctl [command] apache2
+sudo systemctl [command] apache2
 
-    # [command] thông dụng: start, stop, restart, ...
+# [command] thông dụng: start, stop, restart, ...
 ```
 
 ## Cài đặt máy chủ MySQL
 
 * Cài đặt:
 ```console
-    sudo apt install mysql-server
+sudo apt install mysql-server
 ```
 
 * Kiểm tra:
 ```console
-    sudo mysql
+sudo mysql
 ```
 
 ## Cài đặt PHP
 
 * Cài đặt:
 ```console
-    sudo apt install php libapache2-mod-php php-mysql
+sudo apt install php libapache2-mod-php php-mysql
 ```
 
 * Kiểm tra:
 ```console
-    php -v
+php -v
 ```
 
 ## Tạo host ảo trong localhost
@@ -58,8 +58,8 @@ Sử dụng lệnh `sudo su` và nhập mật khẩu. Các lệnh phía sau sẽ
 * Nếu như **WampServer** hay **Xampp** sử dụng thư mục gốc là `C:\wamp64\www` hay `C:\xampp\htdocs` thì thư mục của máy chủ Apache trong Linux sử dụng là `/var/www`. Để đăng ký một host ảo trong localhost, hãy di chuyển vào thư mục này
  
  ```console
-     # từ bất kỳ đường dẫn hiện tại nào
-     cd /var/www
+ # từ bất kỳ đường dẫn hiện tại nào
+ cd /var/www
 ```
 
 > [!Note]
@@ -68,7 +68,7 @@ Sử dụng lệnh `sudo su` và nhập mật khẩu. Các lệnh phía sau sẽ
 * Từ thư mục `/var/www`, ta có thể tạo một thư mục mới trùng tên với host ảo cần tạo.
 
 ```console
-    mkdir yourvhost
+mkdir yourvhost
 ```
 
 > [!Important]
@@ -79,15 +79,15 @@ Sử dụng lệnh `sudo su` và nhập mật khẩu. Các lệnh phía sau sẽ
 * Tạo một file `index.php` (hoặc bất kỳ, lát nữa sẽ hiển thị trên web):
 
 ```console
-    sudo nano index.php
+sudo nano index.php
 ```
 
 Hãy thêm một đoạn mã bất kỳ của PHP vào file vừa tạo, ví dụ:
 
 ```php
-    <?php
-        echo "Hello world!";
-    ?>
+<?php
+    echo "Hello world!";
+?>
 ```
 
 ### Bước 2: Cấu hình host ảo
@@ -95,22 +95,22 @@ Hãy thêm một đoạn mã bất kỳ của PHP vào file vừa tạo, ví d�
 * Di chuyển vào thư mục **/etc/apache2/sites-available**: thư mục này chứa các file cấu hình cho host
 
 ```console
-    cd /etc/apache2/sites-available
+cd /etc/apache2/sites-available
 ```
 
 * Tạo file **`yourvhost.conf`**
 
 ```console
-    sudo nano yourvhost.conf
+sudo nano yourvhost.conf
 ```
 
 * Chép đoạn mã bên dưới vào file vừa tạo:
 
 ```console
-    <VirtualHost *:80>
-        ServerName  yourvhost.com
-        DocumentRoot /var/www/[path to yourvhost]
-    </VirtualHost>
+<VirtualHost *:80>
+    ServerName  yourvhost.com
+    DocumentRoot /var/www/[path to yourvhost]
+</VirtualHost>
 ```
 
 ### Bước 3: Đăng ký yourvhost.com như là localhost
@@ -118,27 +118,27 @@ Hãy thêm một đoạn mã bất kỳ của PHP vào file vừa tạo, ví d�
 * Đăng ký localhost mới cho host ảo vừa tạo:
 
 ```console
-    sudo nano /etc/hosts
+sudo nano /etc/hosts
 ```
 Ở đây đang muốn cấu hình localhost có tên khác là yourvhost.com, nên hãy viết trong file `/etc/hosts`:
 ```console
-    127.0.0.1 yourvhost.com
+127.0.0.1 yourvhost.com
 ```
 
 * Kích hoạt host ảo mới: 
 ```console
-    sudo a2ensite [virtual-host-name].conf
+sudo a2ensite [virtual-host-name].conf
 ```
 - Tắt 000-default.conf:
 
 ```console
-    sudo a2dissite 000-default.conf
+sudo a2dissite 000-default.conf
 ```
 
 * Khởi động lại Apache2:
 
 ```console
-    sudo systemctl reload apache2
+sudo systemctl reload apache2
 ```
 
 Truy cập vào host ảo trong trình duyệt và kiểm tra.
