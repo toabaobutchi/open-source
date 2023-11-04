@@ -38,10 +38,11 @@ sudo apt install mysql-server
 ```console
 sudo mysql
 ```
+Kết quả là một đoạn kết quả hiện ra cùng với dòng lệnh bắt đầu bằng `mysql >`.
 
 ## Cài đặt PHP
 
-* Cài đặt:
+* Cài đặt (bao gồm PHP và các gói cần thiết với Apache và MySQL):
 ```console
 sudo apt install php libapache2-mod-php php-mysql
 ```
