@@ -118,8 +118,7 @@ sudo nano yourvhost.conf
 
 Đoạn mã trên chỉ là một ví dụ đơn giản dùng để bắt toàn bộ IP với port 80 (`*:80`). Có thể chỉ định thông tin khác.
 
-### Bước 3: Đăng ký yourvhost.com như là localhost
-
+### Bước 3: Đăng ký host ảo
 * Đăng ký host ảo vừa tạo:
 
 ```console
@@ -127,15 +126,22 @@ sudo nano /etc/hosts
 ```
 
 Ở đây đang muốn cấu hình localhost có tên khác là yourvhost.com, nên hãy viết trong file `/etc/hosts`:
+
 ```console
 127.0.0.1 yourvhost.com
+```
+
+Hoặc có thể chỉ định 1 IP khác, ví dụ:
+
+```console
+127.0.1.2 yourvhost.com
 ```
 
 * Kích hoạt host ảo mới: 
 ```console
 sudo a2ensite [virtual-host-name].conf
 ```
-- Tắt 000-default.conf:
+- Tắt `000-default.conf` (nếu như muốn tắt `localhost`):
 
 ```console
 sudo a2dissite 000-default.conf
