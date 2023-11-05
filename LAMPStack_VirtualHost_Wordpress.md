@@ -238,3 +238,4 @@ Có thể thay thế `wordpress` thành tên database vừa tạo khi nãy (nế
 
 Truy cập vào đường dẫn `localhost/wordpress` (hoặc host ảo nếu có tạo) và cấu hình các thông tin được yêu cầu. 
 
+Có thể cấu hình bằng file nhưng thực hiện bằng giao diện đơn giản hơn nhiều.
