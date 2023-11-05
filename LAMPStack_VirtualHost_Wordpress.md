@@ -158,20 +158,60 @@ Truy cập vào host ảo trong trình duyệt và kiểm tra.
 
 ## Cài đặt Wordpress (Ứng dụng Web) khi đã cài đặt LAMP Stack
 
-Tham khảo tại: [**Wordpress with LAMP Stack**](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-22-04-with-a-lamp-stack).
+Tham khảo tại: [**Wordpress with LAMP Stack**](https://vexxhost.com/resources/tutorials/how-to-install-wordpress-with-ubuntu-20-04-and-a-lamp-stack/).
+
+### Cài đặt các gói cần thiết của PHP:
+
+```console
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+```
+
+* Restart Apache
+
+```console
+sudo systemctl restart apache2
+```
+
+### Cài đặt Wordpress
+
+* Di chuyển vào thư mục `/var/www/html`:
+
+```console
+cd /var/www/html
+```
+
+* Tải phiên bản mới nhất của Wordpress:
+
+```console
+sudo wget -c http://wordpress.org/latest.tar.gz
+```
+
+* Giải nén file:
+
+```console
+sudo tar -xzvf latest.tar.gz
+```
+
+Thư mục `wordpress` sẽ được giải nén trong đường dẫn `/var/www/html`, và có thể truy cập bằng đường dẫn `localhost/wordpress`.
+
+* Cấp quyền cho truy cập vào thư mục `wordpress`:
+
+```console
+sudo chmod -R 777 wordpress/
+```
 
 ### Tạo và cấu hình Database cho Wordpress
 
 * Truy cập MySQL với quyền root:
 
 ```console
-mysql -u root -p
+sudo mysql -u root -p
 ```
 
 * Tạo databse dành cho Wordpress:
 
 ```console
-CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE wordpress;
 ```
 
 Có thể thay `wordpress` thành tên tuỳ ý, nó đơn giản chỉ là tên database.
@@ -192,18 +232,9 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-Có thể thay thế wordpress thành tên database vừa tạo khi nãy (nếu có).
+Có thể thay thế `wordpress` thành tên database vừa tạo khi nãy (nếu có).
 
-### Cài đặt các gói cần thiết của PHP:
+### Truy cập và cấu hình Wordpress
 
-```console
-sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
-```
-
-* Restart Apache
-
-```console
-sudo systemctl restart apache2
-```
-
+Truy cập vào đường dẫn `localhost/wordpress` (hoặc host ảo nếu có tạo) và cấu hình các thông tin được yêu cầu. 
 
