@@ -158,4 +158,52 @@ Truy cập vào host ảo trong trình duyệt và kiểm tra.
 
 ## Cài đặt Wordpress (Ứng dụng Web) khi đã cài đặt LAMP Stack
 
-Cài đặt Wordpress: [**Wordpress with LAMP Stack**](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-22-04-with-a-lamp-stack)
+Tham khảo tại: [**Wordpress with LAMP Stack**](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-22-04-with-a-lamp-stack).
+
+### Tạo và cấu hình Database cho Wordpress
+
+* Truy cập MySQL với quyền root:
+
+```console
+mysql -u root -p
+```
+
+* Tạo databse dành cho Wordpress:
+
+```console
+CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+```
+
+Có thể thay `wordpress` thành tên tuỳ ý, nó đơn giản chỉ là tên database.
+
+* Tạo user dành cho Wordpress:
+
+```console
+CREATE USER <username>@localhost IDENTIFIED WITH mysql_native_password BY '<password>';
+```
+
+Thay thế `<username>` và `<password>` thành giá trị muốn đặt.
+
+* Cấp quyền cho user vừa tạo:
+
+```console
+GRANT ALL ON wordpress.* TO <username>@localhost;
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+Có thể thay thế wordpress thành tên database vừa tạo khi nãy (nếu có).
+
+### Cài đặt các gói cần thiết của PHP:
+
+```console
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+```
+
+* Restart Apache
+
+```console
+sudo systemctl restart apache2
+```
+
+
