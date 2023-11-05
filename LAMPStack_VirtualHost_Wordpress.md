@@ -156,5 +156,6 @@ sudo systemctl reload apache2
 
 Truy cập vào host ảo trong trình duyệt và kiểm tra.
 
+## Cài đặt Wordpress (Ứng dụng Web) khi đã cài đặt LAMP Stack
 
 Cài đặt Wordpress: [**Wordpress with LAMP Stack**](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-22-04-with-a-lamp-stack)
