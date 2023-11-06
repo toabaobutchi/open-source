@@ -117,7 +117,7 @@ sudo nano yourvhost.conf
 </VirtualHost>
 ```
 
-Đoạn mã trên chỉ là một ví dụ đơn giản dùng để bắt toàn bộ IP với port 80 (`*:80`). Có thể chỉ định thông tin khác.
+Đoạn mã trên chỉ là một ví dụ đơn giản dùng để bắt toàn bộ IP với port 80 (`*:80`). Xem thêm các thông tin khác tại: [**Apache Virtual Host documentation**](https://httpd.apache.org/docs/2.4/vhosts/index.html).
 
 ### Bước 3: Đăng ký host ảo
 * Đăng ký host ảo vừa tạo:
@@ -126,13 +126,7 @@ sudo nano yourvhost.conf
 sudo nano /etc/hosts
 ```
 
-Ở đây đang muốn cấu hình localhost có tên khác là yourvhost.com, nên hãy viết trong file `/etc/hosts`:
-
-```console
-127.0.0.1 yourvhost.com
-```
-
-Hoặc có thể chỉ định 1 IP khác, ví dụ:
+Chỉ định một IP cụ thể và tên host ảo đang muốn tạo, ví dụ:
 
 ```console
 127.0.1.2 yourvhost.com
@@ -142,7 +136,7 @@ Hoặc có thể chỉ định 1 IP khác, ví dụ:
 ```console
 sudo a2ensite [virtual-host-name].conf
 ```
-- Tắt `000-default.conf` (nếu như muốn tắt `localhost`):
+- Tắt `000-default.conf` (**nếu như muốn tắt `localhost`**):
 
 ```console
 sudo a2dissite 000-default.conf
@@ -202,7 +196,7 @@ sudo chmod -R 777 wordpress/
 
 ### Tạo và cấu hình Database cho Wordpress
 
-* Truy cập MySQL với quyền root:
+* Truy cập MySQL với tài khoản `root`:
 
 ```console
 sudo mysql -u root -p
@@ -216,7 +210,7 @@ CREATE DATABASE wordpress;
 
 Có thể thay `wordpress` thành tên tuỳ ý, nó đơn giản chỉ là tên database.
 
-* Tạo user dành cho Wordpress:
+* Tạo user dành cho Wordpress, user này sẽ được Wordpress sử dụng và thao tác trên database vừa tạo ở bước trên.
 
 ```console
 CREATE USER <username>@localhost IDENTIFIED WITH mysql_native_password BY '<password>';
@@ -236,6 +230,6 @@ Có thể thay thế `wordpress` thành tên database vừa tạo khi nãy (nế
 
 ### Truy cập và cấu hình Wordpress
 
-Truy cập vào đường dẫn `localhost/wordpress` (hoặc host ảo nếu có tạo) và cấu hình các thông tin được yêu cầu. 
+Truy cập vào đường dẫn `localhost/wordpress` (hoặc host ảo nếu có tạo) và cấu hình các thông tin được yêu cầu.
 
 Có thể cấu hình bằng file nhưng thực hiện bằng giao diện đơn giản hơn nhiều.
