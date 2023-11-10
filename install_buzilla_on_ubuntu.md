@@ -73,7 +73,7 @@ Alias /bugzilla /var/www/webapps/bugzilla
 </Directory>
 ```
 
-Cấu hình trên thiết lập Bugzilla được phân phát trên máy chủ của bạn theo đường dẫn `/bugzilla`.
+Cấu hình trên thiết lập Bugzilla được phân phát trên máy chủ của bạn theo đường dẫn `localhost/bugzilla`.
 
 Chạy lần lượt các lệnh sau:
 ```console
