@@ -13,7 +13,7 @@ Option `-y` dùng để đồng ý các xác nhận `[Y/n]` khi cập nhật, l�
 
 Hoặc **sử dụng duy nhất 1 dòng lệnh** như sau:
 ```console
-    sudo apt update -y && sudo apt upgrade -y
+    sudo apt update && sudo apt upgrade -y
 ```
 
 ## Sử dụng quyền root
