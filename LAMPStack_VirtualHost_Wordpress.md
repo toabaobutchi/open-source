@@ -72,6 +72,7 @@ Lần lượt chạy các lệnh sau (theo từng dòng):
 ```console
 cd /var/www/html && sudo mkdir <tên-host-ảo> && cd <tên-host-ảo> && sudo nano index.php
 ```
+**Tên host ảo chỉ có phần tên, không có phần .com, .io, .cc, .dev, ...**.
 
 _Nhập một đoạn mã PHP (hoặc HTML) vào file **`index.php`**, ví dụ:_
 
