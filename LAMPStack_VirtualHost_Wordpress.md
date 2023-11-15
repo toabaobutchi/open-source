@@ -1,4 +1,4 @@
-# Cài đặt LAMP Stack - Tạo Virtual host
+# Cài đặt LAMP Stack - Tạo Virtual host - Wordpress
 
 ## Truy cập bằng quyền Root
 
