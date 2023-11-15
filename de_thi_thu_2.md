@@ -30,7 +30,7 @@ FLUSH PRIVILEGES;
 EXIT; 
 ```
 
-* `(1)`: `<tên-thư-mục>` sẽ là tên host ảo mà thấy yêu cầu, không cần .com, .linux, ...
+* `(1)`: `<tên-thư-mục>` sẽ là tên host ảo mà thầy yêu cầu, không cần .com, .linux, ...
 
 * `(2)`, `(3)`, `(4)`: tên `wordpress`, `<username>` và `<password>` **nên thay đổi để không trùng với phiên bản ở localhost**
 
