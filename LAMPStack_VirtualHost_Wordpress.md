@@ -54,19 +54,81 @@ php -v
 
 ## Tạo host ảo trong localhost
 
+### Sơ lược các nội dung cần nắm:
+
+* Thư mục `/var/www/html` là thư mục chứa các thành phần sẽ hiển thị trên trang web.
+
+* Thư mục `/etc/apache2/sites-available` chứa các file `*.conf` để cấu hình các host: chạy với URL như thế nào, port bao nhiêu, trỏ đến thư mục nào để lấy nội dung, ...
+
+* File `/etc/hosts` chứa các host được đăng ký trong máy Linux.
+
+### Quick start
+
+> [!Note]
+> Hãy bỏ qua các phần sau nếu muốn thực hiện nhanh các thao tác.
+
+Lần lượt chạy các lệnh sau (theo từng dòng):
+
+* Vào thư mục **`/var/www/html`**, tạo thư mục **`<tên-host-ảo>`** và tạo file **`index.php`** (hoặc **`index.html`**)
+
+```console
+cd /var/www/html && sudo mkdir <tên-host-ảo> && sudo nano index.php
+```
+
+_Nhập một đoạn mã PHP (hoặc HTML) vào file **`index.php`**, ví dụ:_
+
+```php
+<?= "Hello World!" ?>
+```
+
+_Nội dung file này sẽ hiển thị khi gọi đến host ảo trên URL (sau khi thực hiện các phần sau)_
+
+* Di chuyển vào thư mục **`/etc/apache2/sites-available`**, tạo file cấu hình host ảo **`<tên-host-ảo>.conf`**:
+
+```console
+cd /etc/apache2/sites-available && sudo nano <tên-host-ảo>.conf
+```
+
+_Chép đoạn mã bên dưới vào file cấu hình vừa tạo:_
+
+```console
+<VirtualHost *:80>
+    ServerName  <tên-miền>
+    DocumentRoot /var/www/html/<tên-host-ảo>
+</VirtualHost>
+```
+
+**`<tên-miền>`** là đường dẫn của host ảo muốn truy cập trên thanh địa chỉ.
+
+* Đăng ký host ảo:
+
+```console
+sudo nano /etc/hosts
+```
+_Tìm một dòng trống bên dưới các IP được đăng ký sẵn, đăng ký host ảo vừa tạo ra:_
+
+```console
+<IP> <tên-miền>
+```
+
+* Kích hoạt host ảo mới: 
+```console
+sudo a2ensite <tên-host-ảo>.conf && sudo systemctl reload apache2
+```
+
 ### Bước 1: Khai báo thư mục sẽ chứa nội dung khi truy cập vào host ảo
 
 * Nếu như **WampServer** hay **Xampp** sử dụng thư mục gốc là `C:\wamp64\www` hay `C:\xampp\htdocs` thì thư mục của máy chủ Apache trong Linux sử dụng là `/var/www`. Để đăng ký một host ảo trong localhost, hãy di chuyển vào thư mục này
  
  ```console
  # từ bất kỳ đường dẫn hiện tại nào
- cd /var/www
+ cd /var/www/html
 ```
 
 > [!Note]
-> Trong thư mục `/var/www` có thư mục `html` chứa file `index.html`. File `index.html` là file khởi động khi truy cập vào `localhost`.
+> Trong thư mục `/var/www/html` chứa file `index.html`. File `index.html` này là file khởi động khi truy cập vào `localhost`.
 
-* Từ thư mục `/var/www`, ta có thể tạo một thư mục mới trùng tên với host ảo cần tạo. Về cơ bản thì muốn tạo thư mục ở đâu cũng được (Desktop, thư mục tự tạo, ...).
+* Từ thư mục `/var/www/html`, ta có thể tạo một thư mục mới trùng tên với host ảo cần tạo. Về cơ bản thì muốn tạo thư mục ở đâu cũng được (Desktop, thư mục tự tạo, ...).
 
 ```console
 mkdir yourvhost
@@ -75,7 +137,8 @@ mkdir yourvhost
 > [!Important]
 > * Ở các ví dụ sau, tên host ảo sẽ là **`yourvhost.com`**. Hãy chỉnh sửa lại cho phù hợp với nhu cầu.
 >
-> * Có thể tạo thư mục `yourvhost` ở thư mục `html` bên trong hoặc bất cứ vị trí nào bắt đầu từ `/var/www`. Nội dung sau sẽ chỉ định đường dẫn cụ thể.
+> * Đường dẫn cần phải nhớ phần sau sẽ cấu hình trỏ đến thư mục này
+>
 > * Ở đa phần các trang web hướng dẫn sẽ trỏ đến `/var/www/html`.
 
 * Tạo một file `index.php` (hoặc bất kỳ, lát nữa sẽ hiển thị trên web):
@@ -96,7 +159,7 @@ Hãy thêm một đoạn mã bất kỳ của PHP vào file vừa tạo, ví d�
 
 ### Bước 2: Cấu hình host ảo
 
-* Di chuyển vào thư mục **/etc/apache2/sites-available**: thư mục này chứa các file cấu hình cho host
+* Di chuyển vào thư mục **`/etc/apache2/sites-available`**: thư mục này chứa các file cấu hình cho host
 
 ```console
 cd /etc/apache2/sites-available
@@ -113,7 +176,7 @@ sudo nano yourvhost.conf
 ```console
 <VirtualHost *:80>
     ServerName  yourvhost.com
-    DocumentRoot [path to yourvhost]
+    DocumentRoot /var/www/html/<tên-thư-mục-vừa-tạo-ở-bước-1>
 </VirtualHost>
 ```
 
@@ -142,13 +205,20 @@ sudo a2ensite [virtual-host-name].conf
 sudo a2dissite 000-default.conf
 ```
 
+> [!Warning]
+> Nếu tắt cấu hình của file `000-default.conf` thì sẽ không thể truy cập với đường dẫn bắt đầu bằng `localhost`, hãy cân nhắc. Nếu muốn enable (cho phép) lại file `000-default.conf` thì sử dụng lệnh `sudo a2ensite 000-default.conf`.
+
 * Khởi động lại Apache2:
 
 ```console
 sudo systemctl reload apache2
 ```
 
-Truy cập vào host ảo trong trình duyệt và kiểm tra.
+Truy cập vào host ảo trong trình duyệt và kiểm tra. Nếu đường dẫn có vấn đề, hãy thử một trong các cách sau:
+
+* Sử dụng lệnh `lynx <tên-miền-host-ảo>`.
+
+* Thêm tiền tố `http://` vào đường dẫn trước `<tên-miền-host-ảo>`.
 
 ## Cài đặt Wordpress (Ứng dụng Web) khi đã cài đặt LAMP Stack
 
