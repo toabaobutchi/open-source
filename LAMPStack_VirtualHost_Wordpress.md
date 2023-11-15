@@ -108,7 +108,7 @@ _Tìm một dòng trống bên dưới các IP được đăng ký sẵn, đăng
 ```console
 127.0.0.1       localhost
 127.0.1.1       ngohoaianVM
-<IP>    <tên-miền> # viết ở đây
+=====> <IP>    <tên-miền> # viết ở đây
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
