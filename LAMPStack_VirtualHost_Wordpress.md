@@ -288,7 +288,7 @@ CREATE USER <username>@localhost IDENTIFIED WITH mysql_native_password BY '<pass
 
 Thay thế `<username>` và `<password>` thành giá trị muốn đặt.
 
-* Cấp quyền cho user vừa tạo:
+* Cấp quyền cho user vừa tạo (tốt nhất chạy từng lệnh, thay thế `<username>` bằng tên vừa tạo ở bước trên):
 
 ```console
 GRANT ALL ON wordpress.* TO <username>@localhost;
