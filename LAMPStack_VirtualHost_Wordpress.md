@@ -96,7 +96,7 @@ _Chép đoạn mã bên dưới vào file cấu hình vừa tạo:_
 </VirtualHost>
 ```
 
-**`<tên-miền>`** là đường dẫn của host ảo muốn truy cập trên thanh địa chỉ.
+**`<tên-miền>`** là đường dẫn của host ảo muốn truy cập trên thanh địa chỉ, ví dụ như yourhost.com, yourhost.dev, yourhost.cc, yourhost.io, ...
 
 * Đăng ký host ảo:
 
