@@ -56,8 +56,6 @@ php -v
 
 ### Sơ lược các nội dung cần nắm:
 
-* Thư mục `/var/www/html` là thư mục chứa các thành phần sẽ hiển thị trên trang web.
-
 * Thư mục `/etc/apache2/sites-available` chứa các file `*.conf` để cấu hình các host: chạy với URL như thế nào, port bao nhiêu, trỏ đến thư mục nào để lấy nội dung, ...
 
 * File `/etc/hosts` chứa các host được đăng ký trong máy Linux.
