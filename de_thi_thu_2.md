@@ -9,6 +9,8 @@ cd /var/www/html
 
 mkdir <tên-thư-mục> (1)
 
+cd <tên-thư-mục>
+
 sudo wget -c http://wordpress.org/latest.tar.gz
 
 sudo tar -xzvf latest.tar.gz
