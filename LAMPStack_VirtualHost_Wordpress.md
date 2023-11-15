@@ -111,9 +111,14 @@ _Tìm một dòng trống bên dưới các IP được đăng ký sẵn, đăng
 
 * Kích hoạt host ảo mới: 
 ```console
-sudo a2ensite <tên-host-ảo>.conf && sudo systemctl reload apache2
+sudo a2ensite <tên-host-ảo>.conf
 ```
 
+* Reload lại apache2
+
+```console
+sudo systemctl reload apache2
+```
 ### Bước 1: Khai báo thư mục sẽ chứa nội dung khi truy cập vào host ảo
 
 * Nếu như **WampServer** hay **Xampp** sử dụng thư mục gốc là `C:\wamp64\www` hay `C:\xampp\htdocs` thì thư mục của máy chủ Apache trong Linux sử dụng là `/var/www`. Để đăng ký một host ảo trong localhost, hãy di chuyển vào thư mục này
