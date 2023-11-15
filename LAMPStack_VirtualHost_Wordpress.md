@@ -70,7 +70,7 @@ Lần lượt chạy các lệnh sau (theo từng dòng):
 * Vào thư mục **`/var/www/html`**, tạo thư mục **`<tên-host-ảo>`** và tạo file **`index.php`** (hoặc **`index.html`**)
 
 ```console
-cd /var/www/html && sudo mkdir <tên-host-ảo> && sudo nano index.php
+cd /var/www/html && sudo mkdir <tên-host-ảo> && cd <tên-host-ảo> && sudo nano index.php
 ```
 
 _Nhập một đoạn mã PHP (hoặc HTML) vào file **`index.php`**, ví dụ:_
