@@ -1,6 +1,12 @@
 # Đề tham khảo
 
-Cài đặt wordpress trên host ảo và localhost. Ta giữ nguyên bản của localhost và tải một bản mới, database, user mới.
+Cài đặt wordpress trên host ảo và localhost.
+
+Thầy sẽ yêu cầu show ra 2 bản:
+
+* 1 bản wordpress của localhost: `localhost/wordpress`. Bản này phải cài sẵn ở nhà vì khi báo cáo không có thời gian.
+
+* 1 bản wordpress mới (khác hoàn toàn với cái của localhost) cài đặt trên máy ảo. Khi truy cập vào `<host-ảo>`, trang wordpress mới sẽ hiện ra.
 
 Chạy các lần lượt các lệnh sau:
 
@@ -29,10 +35,10 @@ FLUSH PRIVILEGES;
 
 EXIT; 
 ```
-
-* `(1)`: `<tên-thư-mục>` sẽ là tên host ảo mà thầy yêu cầu, không cần .com, .linux, ...
-
-* `(2)`, `(3)`, `(4)`: tên `wordpress`, `<username>` và `<password>` **nên thay đổi để không trùng với phiên bản ở localhost**
+> [!Warning]
+> * `(1)`: `<tên-thư-mục>` sẽ là tên host ảo mà thầy yêu cầu, không cần .com, .linux, ...
+>
+> * `(2)`, `(3)`, `(4)`: tên `wordpress`, `<username>` và `<password>` **nên thay đổi để không trùng với phiên bản ở localhost**
 
 Sau đó cấu hình host ảo như bình thường bắt đầu từ [**Bước 2**](https://github.com/toabaobutchi/open-source/blob/main/LAMPStack_VirtualHost_Wordpress.md#b%C6%B0%E1%BB%9Bc-2-c%E1%BA%A5u-h%C3%ACnh-host-%E1%BA%A3o).
 
