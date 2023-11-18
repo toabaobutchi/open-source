@@ -6,7 +6,7 @@
 
 Sử dụng lần lượt các lệnh sau:
 ```console
-    sudo apt update -y
+    sudo apt update
     sudo apt upgrade -y
 ```
 Option `-y` dùng để đồng ý các xác nhận `[Y/n]` khi cập nhật, làm cho quá trình diễn ra tự động.
