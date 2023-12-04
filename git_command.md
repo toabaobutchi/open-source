@@ -1,3 +1,5 @@
 # Các câu lệnh git cơ bản
 
-* Nguồn tài liệu: [**Git Reference**](https://git-scm.com/docs)
+* Các nguồn tham khảo:
+  * [**Git Reference**](https://git-scm.com/docs)
+  * https://codelearn.io/sharing/lenh-git-quan-trong-developer-can-biet
